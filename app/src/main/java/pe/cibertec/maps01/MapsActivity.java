@@ -3,6 +3,7 @@ package pe.cibertec.maps01;
 import android.graphics.Color;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -11,6 +12,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
@@ -82,6 +84,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 mMap.addPolyline(new PolylineOptions().add(cibertec,cibertecSanIsidro)
                         .width(5)
                         .color(Color.DKGRAY));
+
+                mMap.setOnMarkerDragListener(new GoogleMap.OnMarkerDragListener() {
+                    @Override
+                    public void onMarkerDragStart(Marker marker) {
+
+                    }
+
+                    @Override
+                    public void onMarkerDrag(Marker marker) {
+
+                    }
+
+                    @Override
+                    public void onMarkerDragEnd(Marker marker) {
+                        Toast.makeText(getApplicationContext(),"Latitude" +marker.getPosition().latitude + "\n"
+                                        + "Longitud " + marker.getPosition().longitude,Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
         // mMap.moveCamera(CameraUpdateFactory.newLatLng(cibertec));
